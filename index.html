@@ -35,6 +35,13 @@
       margin-top: 36px;
       color: #39734a;
     }
+    
+<input
+  type="search"
+  id="searchInput"
+  placeholder="🔎 Search resources..."
+  aria-label="Search resources"
+/>
 
     ul {
       list-style: none;
@@ -55,6 +62,26 @@
     li:hover {
       background: #eaf3e8;
     }
+    
+#searchInput {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  margin: 20px auto;
+  padding: 14px 18px;
+  border: 1px solid #d5e3d3;
+  border-radius: 14px;
+  background: white;
+  color: #263b2b;
+  font-size: 16px;
+  outline: none;
+}
+
+#searchInput:focus {
+  border-color: #39734a;
+  box-shadow: 0 0 0 3px #39734a18;
+}
+
   </style>
 </head>
 <body>
@@ -72,5 +99,25 @@
   </ul>
 
   <p>Made with 💚 by Brake.</p>
+  
+  <script>
+    const searchInput = document.getElementById("searchInput");
+    const items = document.querySelectorAll("ul li");
+
+    searchInput.addEventListener("input", function () {
+      const searchText = searchInput.value.toLowerCase();
+
+      items.forEach(function (item) {
+        const itemText = item.textContent.toLowerCase();
+
+        if (itemText.includes(searchText)) {
+          item.style.display = "";
+        } else {
+          item.style.display = "none";
+        }
+      });
+    });
+  </script>
+
 </body>
 </html>
